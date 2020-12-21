@@ -1,2 +1,2 @@
 #/bin/bash
-g++ main.cpp -o /bin/bf
+g++ main.cpp -o bin/bf
