@@ -1,11 +1,11 @@
-#include "BFEngine.cpp"
+#include "BFEngine/BFEngine.h"
 #include <iostream>
 
 using namespace std;
 using namespace bf;
 
 int main(int argc, char *argv[]) {
-  BFEngine engine = BFEngine();
+  BFEngine engine = BFEngine(0);
   //Testing - a simple hello world.
   engine.parseString("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.");
   return 0;
