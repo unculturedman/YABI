@@ -1,0 +1,1 @@
+g++ main.cpp -o bin/bf.exe -static-libstdc++
