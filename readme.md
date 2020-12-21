@@ -13,7 +13,7 @@ You enable debug mode with `-d` flag.
 The program will not work correctly for code longer than `size_t - 1` (4294967295) characters.
 
 ### TODO:
-- [ ] Working bf engine
+- [x] Working bf engine
 - [ ] Reading and parsing .bf files
 - [ ] Live parser
 - [ ] Debug command, enabled by `-d` flag - ncurses maybe?
