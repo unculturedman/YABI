@@ -1,5 +1,0 @@
-In file included from main.cpp:1:
-BFEngine.h: In lambda function:
-BFEngine.h:91:17: error: expected primary-expression before '}' token
-   91 |                 }
-      |                 ^
