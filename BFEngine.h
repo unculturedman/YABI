@@ -1,32 +1,32 @@
-#include <cassert>
-#include <cstdlib>
-#include <cstddef>
-#include <iostream>
-#include <cstring>
 #include <algorithm>
 #include <array>
-#include <vector>
-#include <utility>
+#include <cstddef>
+#include <iostream>
 #include <sstream>
+#include <utility>
+#include <vector>
 
 namespace bf {
     typedef std::pair<std::size_t, std::size_t> gotoPair;
     typedef std::vector<gotoPair> gotoVector;
 
     struct commandChain {
-        std::string command;
-        std::size_t position = 0;
         bool loop;
+        std::size_t position = 0;
+        std::string command;
+
         commandChain(std::string cmd, bool isLoop) {
             command = cmd;
             loop = isLoop;
         }
     };
+
     class BFEngine {
-        std::array<char, 30000> memory = {0};
+        bool debugMode;
         int address = 0;
         size_t current_position = 0;
-        bool debugMode;
+        std::array<char, 30000> memory = {0};
+        
         gotoVector goto_vector = {};
         void increment() {
             memory[address]++;
@@ -60,8 +60,6 @@ namespace bf {
             if (!memory[address]) {
                 goTo((*corresponding_pair).second - 1);
             }
-
-            // find if there's any
         }
         void closeLoop() {
             auto corresponding_pair = std::find_if(goto_vector.begin(), goto_vector.end(), [this] (gotoPair& zip) {
@@ -123,9 +121,7 @@ namespace bf {
         BFEngine(bool debug = 0) {
             debugMode = debug;
         }
-        ~BFEngine() {
 
-        }
         void parseString(std::string code) {
             parseLoops(code);
 
