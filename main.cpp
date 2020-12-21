@@ -1,4 +1,4 @@
-#include "BFEngine.h"
+#include "BFEngine.cpp"
 #include <iostream>
 
 using namespace std;
