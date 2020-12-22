@@ -9,13 +9,13 @@ namespace bf {
             int current_address;
             std::size_t current_position;
             std::string* code_ptr;
-            std::array<char, 30000>* memory_ptr;
+            std::array<char, 3000>* memory_ptr;
 
             bool handleInput();
             void end();
             
         public:
-            void init(std::array<char, 30000>*);
+            void init(std::array<char, 3000>*);
             void showDebugScreen(int, std::size_t, std::string*);
     };
 }

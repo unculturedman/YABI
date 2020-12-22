@@ -6,7 +6,7 @@
 
 using namespace bf;
 
-void DebugDisplay::init(std::array<char, 30000>* ptr_to_memory) {
+void DebugDisplay::init(std::array<char, 3000>* ptr_to_memory) {
     memory_ptr = ptr_to_memory;
 };
 

@@ -16,7 +16,7 @@ namespace bf {
             bool debugMode;
             int address = 0;
             size_t current_position = 0;
-            std::array<char, 30000> memory = {0};
+            std::array<char, 3000> memory = {0};
             gotoVector goto_vector = {};
             DebugDisplay* display;
         
