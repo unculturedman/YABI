@@ -4,11 +4,15 @@
 #include <sstream>
 #include <vector>
 #include "BFEngine.h"
+#include "display/debugDisplay.h"
 
 using namespace bf;
 
 BFEngine::BFEngine(bool debug = 0) {
     debugMode = debug;
+    if (debug) {
+        enableDebug();
+    }
 }
 
 void BFEngine::increment() {
@@ -67,9 +71,21 @@ void BFEngine::closeLoop() {
     }
 }
 
-void BFEngine::initDebugScreen() {
+void BFEngine::initDebugScreen(std::string* code_ptr) {
+    if (display) {
+        display->showDebugScreen(address, current_position, code_ptr);
+        return;
+    }
+    std::stringstream error_message;
+    error_message << "Invalid initDEbugScreen call at " << current_position << ". This is probably an interpreter issue.";
+    fatal(error_message.str());
+}
+
+void BFEngine::enableDebug() {
+    DebugDisplay d = DebugDisplay();
+    display = &d;
+    display->init(&memory);
     return;
-    //not implemented
 }
 
 void BFEngine::goTo(std::size_t position) {
@@ -146,7 +162,7 @@ void BFEngine::parseString(std::string code) {
                 break;
             case '*':
                 if (debugMode) {
-                    initDebugScreen();
+                    initDebugScreen(&code);
                 }
         }
         current_position++;
