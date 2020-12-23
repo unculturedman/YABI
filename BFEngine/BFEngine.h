@@ -33,6 +33,8 @@ namespace bf {
             void initDebugScreen(std::string*);
             void parseLoops(std::string);
             void fatal(std::string);
+            void die();
+            void die(std::string);
 
         public:
             BFEngine();

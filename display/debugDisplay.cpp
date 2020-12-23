@@ -16,7 +16,8 @@ void DebugDisplay::end() {
     return;
 };
 
-void DebugDisplay::showDebugScreen(int starting_address, std::size_t current_code_position, std::string* ptr_to_code) {
+debug_command DebugDisplay::showDebugScreen(int starting_address, std::size_t current_code_position, std::string* ptr_to_code) {
+    debug_command command;
     current_address = starting_address;
     current_position = current_code_position;
     code_ptr = ptr_to_code;
@@ -26,17 +27,28 @@ void DebugDisplay::showDebugScreen(int starting_address, std::size_t current_cod
     curs_set(0);
     printw("Hello YABI!");
     refresh();
-    while (handleInput()) {
+
+    do {
+        command = handleInput();
         refresh();
     }
+    while (command == NOOP);
     end();
-    return;
+    return command;
 };
 
-bool DebugDisplay::handleInput() {
+debug_command DebugDisplay::handleInput() {
     switch(getch()) {
-        case 'q': 
-            return 0;
+        case 27:
+            //27 is returned both for ALT and ESC keys. If no other key is pressed at the moment - assume ESC.
+            nodelay(stdscr, 1);
+            if (getch() == -1) {
+                return QUIT;
+            }
+            nodelay(stdscr, 0) ;
+            return NOOP;
+        case KEY_ENTER:
+            return CONTINUE;
     }
-    return 1;
-}
+    return NOOP;
+};

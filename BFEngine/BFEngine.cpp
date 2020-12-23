@@ -72,8 +72,12 @@ void BFEngine::closeLoop() {
 }
 
 void BFEngine::initDebugScreen(std::string* code_ptr) {
+    debug_command returned_command;
     if (display) {
-        display->showDebugScreen(address, current_position, code_ptr);
+        returned_command = display->showDebugScreen(address, current_position, code_ptr);
+        if (returned_command == QUIT) {
+            die();
+        }
         return;
     }
     std::stringstream error_message;
@@ -125,6 +129,15 @@ void BFEngine::parseLoops(std::string code) {
 void BFEngine::fatal(std::string message) {
     std::cerr << message;
     exit(1);
+}
+
+void BFEngine::die(std::string message) {
+    std::cout << message;
+    exit(0);
+}
+
+void BFEngine::die() {
+    exit(0);
 }
 
 void BFEngine::parseString(std::string code) {

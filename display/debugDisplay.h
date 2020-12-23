@@ -4,6 +4,8 @@
 #include <BFEngine/BFEngine.h>
 
 namespace bf {
+    enum debug_command {NOOP, CONTINUE, QUIT};
+
     class DebugDisplay {
         private: 
             int current_address;
@@ -11,11 +13,11 @@ namespace bf {
             std::string* code_ptr;
             std::array<char, 3000>* memory_ptr;
 
-            bool handleInput();
+            debug_command handleInput();
             void end();
             
         public:
             void init(std::array<char, 3000>*);
-            void showDebugScreen(int, std::size_t, std::string*);
+            debug_command showDebugScreen(int, std::size_t, std::string*);
     };
 }
