@@ -1,6 +1,7 @@
 #include <array>
 #include <string>
 #include <ncurses.h>
+#include <iostream>
 #include "debugDisplay.h"
 #include "BFEngine/BFEngine.h"
 
@@ -25,12 +26,17 @@ debug_command DebugDisplay::showDebugScreen(int starting_address, std::size_t cu
     initscr();
     noecho();
     curs_set(0);
-    printw("Hello YABI!");
-    refresh();
+    getmaxyx(stdscr, scr_y, scr_x);
+    if (has_colors()) {
+        start_color();
+        init_pair(1, COLOR_WHITE, COLOR_RED);
+    }
 
     do {
-        command = handleInput();
+        erase();
+        displayMemory();
         refresh();
+        command = handleInput();
     }
     while (command == NOOP);
     end();
@@ -45,10 +51,52 @@ debug_command DebugDisplay::handleInput() {
             if (getch() == -1) {
                 return QUIT;
             }
-            nodelay(stdscr, 0) ;
+            nodelay(stdscr, 0);
             return NOOP;
-        case KEY_ENTER:
+        case '\n':
             return CONTINUE;
+        case 0:
+            //For arrow keys, there are 2 values returned, of which first one is 0.
+            nodelay(stdscr, 1);
+            switch(getch()) {
+                case 72:
+                    current_address--;
+                    break;
+                case 80:
+                    current_address++;
+            }
+            nodelay(stdscr, 0);
     }
     return NOOP;
 };
+
+void DebugDisplay::displayMemory() {
+    int starting_addr = current_address - (scr_y / 2);
+    for (int i = 0; i < scr_y; i++) {
+        if (starting_addr + i >= 0) {
+            if (current_address == starting_addr + i && has_colors()) {
+                attron(COLOR_PAIR(1));
+                mvprintw(i, 0, "        "); //TODO: This is ugly, think off something else to color in rows pls;
+                printMemoryLine(i, starting_addr);
+                attroff(COLOR_PAIR(1));
+            } else {
+                printMemoryLine(i, starting_addr);
+            }
+        } else {
+            if (current_address == starting_addr + i && has_colors()) {
+                attron(COLOR_PAIR(1));
+                mvprintw(i, 0, "        ");
+                attroff(COLOR_PAIR(1));
+            }
+        }
+    }
+}
+
+void DebugDisplay::printMemoryLine(int row, int starting_addr) {
+    mvprintw(row, 0, "%i:", starting_addr + row + 1);
+    mvprintw(row, 5, "%i", (*memory_ptr)[starting_addr + row]);
+}
+
+void DebugDisplay::displayCode() {
+    
+}

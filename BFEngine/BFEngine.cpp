@@ -81,7 +81,7 @@ void BFEngine::initDebugScreen(std::string* code_ptr) {
         return;
     }
     std::stringstream error_message;
-    error_message << "Invalid initDEbugScreen call at " << current_position << ". This is probably an interpreter issue.";
+    error_message << "Invalid initDebugScreen() call at " << current_position << ". This is probably an interpreter issue.";
     fatal(error_message.str());
 }
 

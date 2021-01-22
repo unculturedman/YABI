@@ -9,11 +9,16 @@ namespace bf {
     class DebugDisplay {
         private: 
             int current_address;
+            int scr_x;
+            int scr_y;
             std::size_t current_position;
             std::string* code_ptr;
             std::array<char, 3000>* memory_ptr;
 
             debug_command handleInput();
+            void displayMemory();
+            void printMemoryLine(int, int);
+            void displayCode();
             void end();
             
         public:

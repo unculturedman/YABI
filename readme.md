@@ -20,6 +20,8 @@ I **cannot** guarantee for now that the linux build.sh script will work - I have
 - [ ] Debug command, enabled by `-d` flag
   - [x] Add ncurses to the project
   - [ ] Make the debug screen
+    - [x] Shut down interpreter on Escape key press
+    - [ ] Display memory & code
   - [ ] Add flag parsing to `main.cpp`
 - [ ] Variable memory size with `-m` flag maybe?
 - [ ] `-h` flag for help?
