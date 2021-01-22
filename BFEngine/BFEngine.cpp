@@ -78,8 +78,6 @@ void BFEngine::initDebugScreen(std::string* code_ptr) {
         if (returned_command == QUIT) {
             die();
         }
-        std::cout << returned_command;
-        std::cout << "???";
         return;
     }
 }
@@ -175,7 +173,6 @@ void BFEngine::parseString(std::string code) {
             case '*':
                 if (debugMode) {
                     initDebugScreen(&code);
-                    std::cout << "WHAT THE FUCK";
                 }
         }
         current_position++;
