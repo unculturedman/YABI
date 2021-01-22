@@ -9,13 +9,13 @@ using namespace bf;
 
 void DebugDisplay::init(std::array<char, 3000>* ptr_to_memory) {
     memory_ptr = ptr_to_memory;
-};
+}
 
 void DebugDisplay::end() {
     code_ptr = NULL;
     endwin();
     return;
-};
+}
 
 debug_command DebugDisplay::showDebugScreen(int starting_address, std::size_t current_code_position, std::string* ptr_to_code) {
     debug_command command;
@@ -41,7 +41,7 @@ debug_command DebugDisplay::showDebugScreen(int starting_address, std::size_t cu
     while (command == NOOP);
     end();
     return command;
-};
+}
 
 debug_command DebugDisplay::handleInput() {
     switch(getch()) {
@@ -68,9 +68,10 @@ debug_command DebugDisplay::handleInput() {
             nodelay(stdscr, 0);
     }
     return NOOP;
-};
+}
 
 void DebugDisplay::displayMemory() {
+    /*
     int starting_addr = current_address - (scr_y / 2);
     for (int i = 0; i < scr_y; i++) {
         if (starting_addr + i >= 0) {
@@ -90,6 +91,7 @@ void DebugDisplay::displayMemory() {
             }
         }
     }
+    */
 }
 
 void DebugDisplay::printMemoryLine(int row, int starting_addr) {

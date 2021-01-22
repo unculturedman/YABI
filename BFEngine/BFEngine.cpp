@@ -1,10 +1,12 @@
+#include "BFEngine.hpp"
+#include "display/debugDisplay.hpp"
 #include <algorithm>
 #include <array>
 #include <iostream>
 #include <sstream>
+#include <streambuf>
 #include <vector>
-#include "BFEngine.hpp"
-#include "display/debugDisplay.hpp"
+#include <fstream>
 
 using namespace bf;
 
@@ -137,7 +139,8 @@ void BFEngine::die() {
     exit(0);
 }
 
-void BFEngine::parseString(std::string code) {
+int BFEngine::parseString(std::string code) {
+    std::cout << '\n';
     parseLoops(code);
 
     size_t max_position = code.length() - 1;
@@ -177,4 +180,21 @@ void BFEngine::parseString(std::string code) {
         }
         current_position++;
     }
+
+    return 0;
+}
+
+int BFEngine::parseFile(std::string filepath) {
+    std::ifstream parsedFile(filepath);
+    std::string code;
+    if (parsedFile.is_open()) {
+        parsedFile.seekg(0, std::ios::end);
+        code.reserve(parsedFile.tellg());
+        parsedFile.seekg(0, std::ios::beg);
+        code.assign(std::istreambuf_iterator<char>(parsedFile), std::istreambuf_iterator<char>());
+        parsedFile.close();
+        return this->parseString(code);
+    }
+    std::cout << "File \"" << filepath << "\" not found.";
+    return 1;
 }

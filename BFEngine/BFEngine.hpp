@@ -39,7 +39,8 @@ namespace bf {
         public:
             BFEngine();
             BFEngine(bool);
-            void parseString(std::string);
+            int parseString(std::string);
+            int parseFile(std::string);
     };
 
 }
