@@ -12,7 +12,6 @@ void DebugDisplay::init(std::array<char, 3000>* ptr_to_memory) {
 };
 
 void DebugDisplay::end() {
-    raw();
     endwin();
     return;
 };
