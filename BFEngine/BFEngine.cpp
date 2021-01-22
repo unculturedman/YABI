@@ -78,11 +78,10 @@ void BFEngine::initDebugScreen(std::string* code_ptr) {
         if (returned_command == QUIT) {
             die();
         }
+        std::cout << returned_command;
+        std::cout << "???";
         return;
     }
-    std::stringstream error_message;
-    error_message << "Invalid initDebugScreen() call at " << current_position << ". This is probably an interpreter issue.";
-    fatal(error_message.str());
 }
 
 void BFEngine::enableDebug() {
@@ -176,6 +175,7 @@ void BFEngine::parseString(std::string code) {
             case '*':
                 if (debugMode) {
                     initDebugScreen(&code);
+                    std::cout << "WHAT THE FUCK";
                 }
         }
         current_position++;

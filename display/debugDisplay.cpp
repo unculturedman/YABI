@@ -12,6 +12,7 @@ void DebugDisplay::init(std::array<char, 3000>* ptr_to_memory) {
 };
 
 void DebugDisplay::end() {
+    code_ptr = NULL;
     endwin();
     return;
 };

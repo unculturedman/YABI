@@ -7,6 +7,6 @@ using namespace bf;
 int main(int argc, char *argv[]) {
   BFEngine engine = BFEngine(1);
   //Testing - a simple hello world.
-  engine.parseString("+*+++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.");
+  engine.parseString("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+*++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.");
   return 0;
 }
