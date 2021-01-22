@@ -3,8 +3,8 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include "BFEngine.h"
-#include "display/debugDisplay.h"
+#include "BFEngine.hpp"
+#include "display/debugDisplay.hpp"
 
 using namespace bf;
 

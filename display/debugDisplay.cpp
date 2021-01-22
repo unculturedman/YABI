@@ -2,8 +2,8 @@
 #include <string>
 #include <ncurses.h>
 #include <iostream>
-#include "debugDisplay.h"
-#include "BFEngine/BFEngine.h"
+#include "debugDisplay.hpp"
+#include "BFEngine/BFEngine.hpp"
 
 using namespace bf;
 

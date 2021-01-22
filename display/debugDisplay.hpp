@@ -1,7 +1,7 @@
 #pragma once
 #include <array>
 #include <string>
-#include <BFEngine/BFEngine.h>
+#include <BFEngine/BFEngine.hpp>
 
 namespace bf {
     enum debug_command {NOOP, CONTINUE, QUIT};

@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 #include <utility>
-#include "display/debugDisplay.h"
+#include "display/debugDisplay.hpp"
 
 namespace bf {
     typedef std::pair<std::size_t, std::size_t> gotoPair;
